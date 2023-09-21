@@ -8,7 +8,7 @@ int64_t computeRemainder(const uint32_t totalIteration, double interest, uint64_
     int64_t currentDebt = totalDebt;
     for ( uint32_t i = 0;i < totalIteration;i++ )
     {
-        int64_t currentCharge = (int64_t)(currentDebt * interest);
+        int64_t currentCharge = (int64_t)(currentDebt * interest / 12.);
         currentDebt = currentDebt + currentCharge - monthlyPayment;
     }
     return currentDebt;
@@ -32,7 +32,7 @@ uint64_t bisectAmount(const uint32_t totalIteration, double interest, uint64_t t
     }
     else
     {
-        return bisectAmount(totalIteration, interest, totalDebt, upperBound, lowerBound);
+        return bisectAmount(totalIteration, interest, totalDebt, upperBound, currentPayment);
     }
 }
 
